@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LabReports</string>
+
+    <string-array name="spinner_items">
+        <item>First</item>
+        <item>Second</item>
+    </string-array>
+</resources>
