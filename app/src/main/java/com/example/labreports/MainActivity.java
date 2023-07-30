@@ -1,64 +1,46 @@
 package com.example.labreports;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 
 public class MainActivity extends AppCompatActivity {
-    Button btnFragA, btnFragB, btnFragC;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        btnFragA = findViewById(R.id.btnFragA);
-        btnFragB = findViewById(R.id.btnFragB);
-        btnFragC = findViewById(R.id.btnFragC);
-
-        // default fragment
-        loadFrag(new AFragment(), 0);
-
-        btnFragA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadFrag(new AFragment(),1);
-            }
-        });
-
-        btnFragB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadFrag(new BFragment(),1);
-            }
-        });
-
-        btnFragC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadFrag(new CFragment(),1);
-            }
-        });
     }
 
-    public void loadFrag(Fragment fragment, int flag) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.example_menu,menu);
+        return true;
+    }
 
-        if(flag == 0){
-            ft.add(R.id.container, fragment);
-        }else{
-            ft.replace(R.id.container, fragment);
+    // ctrl + o
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        if(id == R.id.item1){
+            Toast.makeText(this,"Item 1 selected", Toast.LENGTH_SHORT).show();
+        }else if(id == R.id.item2){
+            Toast.makeText(this,"Item 2 is selected", Toast.LENGTH_SHORT).show();
+        }else if(id == R.id.item3){
+            Toast.makeText(this,"Item 3 is selected", Toast.LENGTH_SHORT).show();
+        }else if(id == R.id.subitem1){
+            Toast.makeText(this,"Sub Item 1 is selected", Toast.LENGTH_SHORT).show();
+        }else if(id == R.id.subitem2){
+            Toast.makeText(this,"Sub Item 2 is selected", Toast.LENGTH_SHORT).show();
         }
 
-        ft.commit();
+        return super.onOptionsItemSelected(item);
     }
-
 }
